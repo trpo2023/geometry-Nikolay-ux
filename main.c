@@ -65,6 +65,20 @@ int check_args(char* string, char len)
     return 0;
 }
 
+check_str_end(char* string)
+{
+    char end = 0;
+    if (string[strlen(string) - 1] == '\n')
+        end = strlen(string) - 2;
+    else
+        end = strlen(string) - 1;
+    if (string[end] != ')') {
+        printf("Error at column %d: expected ')'", end);
+        return 1;
+    }
+    return 0;
+}
+
 int main()
 {
     char string[N];
