@@ -21,6 +21,10 @@ int check_name(char* string)
 
 int check_args(char* string, int len)
 {
+    if (string[len] != '(') {
+        printf("Error at column %d: expected '('\n", len);
+        return 1;
+    }
     char arg_count = 0, arg2_count = 0, d = 0, b = 0;
     for (int i = len + 1; (i < strlen(string)) && (string[i] != ','); i++) {
         if ((string[i] != ' ') && (string[i] != '.')
