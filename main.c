@@ -100,7 +100,7 @@ int check_str_end(char* string)
 int Errormsg(char* string, char count)
 {
     printf("shape number: %d\n", count);
-    printf("%s\n", string);
+    printf("%s", string);
     int len;
     if ((len = check_name(string)) == 1)
         printf("Error at column 0: expected 'circle'\n");
