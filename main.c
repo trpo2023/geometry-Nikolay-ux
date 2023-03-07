@@ -116,6 +116,10 @@ int main()
     char string[N];
     FILE* check;
     check = fopen("shapes.txt", "r");
+    if (check == NULL) {
+        printf("Error of opening file!\n");
+        return 1;
+    }
     for (char count = 1; fgets(string, N, check) != NULL; count++) {
         Errormsg(string, count);
     }
