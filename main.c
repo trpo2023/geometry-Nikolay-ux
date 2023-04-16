@@ -5,7 +5,7 @@
 
 int check_name(char* string)
 {
-    char temp[strlen(string)], len = 0;
+    char temp[N], len = 0;
     for (int i = 0; (string[i] > 96) && (string[i] < 123); i++) {
         if (string[i] != '(') {
             temp[i] = string[i];
@@ -99,7 +99,7 @@ int check_str_end(char* string)
 
 int Errormsg(char* string, char count)
 {
-    printf("shape number: %d\n", count);
+    printf("\nshape number: %d\n", count);
     printf("%s", string);
     int len;
     if ((len = check_name(string)) == 1)
