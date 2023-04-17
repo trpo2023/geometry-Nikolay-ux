@@ -1,6 +1,5 @@
-// #include "libgeometry/lexer.h"
-#include "libgeometry/parser.h"
 #include "libgeometry/counter.h"
+#include "libgeometry/parser.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,7 +16,7 @@ int main()
         return 1;
     }
     for (char count = 1; fgets(string, N, check) != NULL; count++) {
-        if(is_circle(string, count) == 0) {
+        if (is_circle(string, count) == 0) {
             printf("\tarea = %f\n", count_area(string));
             printf("\tperimeter = %f\n", count_perimeter(string));
         }
