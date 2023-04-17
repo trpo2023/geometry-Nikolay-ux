@@ -1,4 +1,5 @@
 *.out
 *.o
 *.d
-main
+*.a
+geometry
