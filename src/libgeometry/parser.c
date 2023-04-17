@@ -9,13 +9,15 @@ int check_args(char* string, int len)
         return 1;
     }
     char arg_count = 0, arg2_count = 0, d = 0, b = 0;
-    for (int i = len + 1; (i < (int)strlen(string)) && (string[i] != ','); i++) {
+    for (int i = len + 1; (i < (int)strlen(string)) && (string[i] != ',');
+         i++) {
         if ((string[i] != ' ') && (string[i] != '.')
             && (!((string[i] > 47) && (string[i] < 58)))) {
             printf("Error at column %d\n", i);
             return 1;
-        }
-        if ((string[i] > 47) && (string[i] < 58) && (string[i + 1] == ' ')) {
+        } else if (
+                (string[i] > 47) && (string[i] < 58)
+                && (string[i + 1] == ' ')) {
             arg_count += 1;
             d = i;
         } else if ((string[i] == '.') && (string[i + 1] == ')')) {
@@ -39,8 +41,9 @@ int check_args(char* string, int len)
             || (string[i] == ',')) {
             printf("Error at column %d: \n", i);
             return 1;
-        }
-        if ((string[i] > 47) && (string[i] < 58) && (string[i + 1] == ' ')) {
+        } else if (
+                (string[i] > 47) && (string[i] < 58)
+                && (string[i + 1] == ' ')) {
             arg2_count += 1;
             b = i;
         } else if ((string[i] == '.') && (string[i + 1] == ' ')) {
