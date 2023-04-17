@@ -1,10 +1,6 @@
 #include "libgeometry/counter.h"
 #include "libgeometry/parser.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 int N = 50;
 
 int main()
