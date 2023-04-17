@@ -1,8 +1,8 @@
+#include "libgeometry/counter.h"
+#include "libgeometry/parser.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "libgeometry/counter.h"
-#include "libgeometry/parser.h"
 
 int N = 50;
 
