@@ -1,13 +1,16 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+name: Build
+
+on: push
+
 jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-20.04
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - uses: actions/checkout@v2
+
+      - name: Check codestyle
+        run: git ls-files *.{c,h} | xargs clang-format -i --verbose && git diff --exit-code
+
+      - name: Build application
+        run: make
