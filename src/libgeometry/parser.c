@@ -1,4 +1,4 @@
-#include "lexer.h"
+#include "libgeometry/lexer.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -9,7 +9,7 @@ int check_args(char* string, int len)
         return 1;
     }
     char arg_count = 0, arg2_count = 0, d = 0, b = 0;
-    for (int i = len + 1; (i < strlen(string)) && (string[i] != ','); i++) {
+    for (int i = len + 1; (i < (int)strlen(string)) && (string[i] != ','); i++) {
         if ((string[i] != ' ') && (string[i] != '.')
             && (!((string[i] > 47) && (string[i] < 58)))) {
             printf("Error at column %d\n", i);
@@ -28,12 +28,12 @@ int check_args(char* string, int len)
         return 1;
     }
     int v = 0;
-    for (int i = 0; i < strlen(string); i++) {
+    for (int i = 0; i < (int)strlen(string); i++) {
         if (string[i] == ',') {
             v = i + 1;
         }
     }
-    for (int i = v; (string[i] != ')') && (i < strlen(string)) - 1; i++) {
+    for (int i = v; (string[i] != ')') && (i < (int)strlen(string)) - 1; i++) {
         if (((string[i] != ' ') && (string[i] != '.')
              && (!((string[i] > 47) && (string[i] < 58))))
             || (string[i] == ',')) {
@@ -58,11 +58,11 @@ int check_args(char* string, int len)
 int check_str_end(char* string)
 {
     int endst = 0, end = 0;
-    if (string[strlen(string) - 1] == '\n')
-        endst = strlen(string) - 2;
+    if (string[(int)strlen(string) - 1] == '\n')
+        endst = (int)strlen(string) - 2;
     else
-        endst = strlen(string) - 1;
-    for (int i = 0; i < strlen(string); i++) {
+        endst = (int)strlen(string) - 1;
+    for (int i = 0; i < (int)strlen(string); i++) {
         if ((string[i] == ')') && (string[i + 1] != '\n')) {
             printf("Error at column %d: unexpected token\n", i + 1);
             return 1;
