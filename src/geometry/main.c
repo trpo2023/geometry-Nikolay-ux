@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+
 #include "libgeometry/counter.h"
 #include "libgeometry/parser.h"
-
-#define N 50
+#include "libgeometry/macr.h"
 
 int main()
 {
