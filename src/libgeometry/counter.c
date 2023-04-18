@@ -7,7 +7,6 @@
 float count_area(char* string)
 {
     int i = 0;
-    float pi = 3.141592;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
     for (i = 0; string[i] != ','; i++) {
@@ -25,7 +24,6 @@ float count_area(char* string)
 float count_perimeter(char* string)
 {
     int i = 0;
-    float pi = 3.141592;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
     for (i = 0; string[i] != ','; i++) {
