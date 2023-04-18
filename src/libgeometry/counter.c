@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <math.h>
 
 float count_area(char* string)
 {
@@ -6,14 +7,16 @@ float count_area(char* string)
     float pi = 3.141592;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
-    for (i = 0; string[i] != ','; i++)
-        ;
+    for (i = 0; string[i] != ','; i++) {
+    }
     i++;
     for (; string[i] != ')'; i++) {
         temp[count++] = string[i];
         temp = (char*)realloc(temp, (count + 1) * sizeof(char));
     }
-    return (pi * atof(temp) * atof(temp));
+    float k = M_PI * atof(temp) * atof(temp);
+    free(temp);
+    return k;
 }
 
 float count_perimeter(char* string)
