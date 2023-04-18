@@ -21,5 +21,6 @@ int main()
             printf("\tperimeter = %f\n", count_perimeter(string));
         }
     }
+    free(string);
     return 0;
 }
