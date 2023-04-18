@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-extern int N;
+
 
 int check_name(char* string)
 {
     char temp[N], len = 0;
-    for (int i = 0; (string[i] > 96) && (string[i] < 123); i++) {
+    for (int i = 0; (string[i] >= 'a') && (string[i] <= 'z'); i++) {
         if (string[i] != '(') {
             temp[i] = string[i];
             len = i;
