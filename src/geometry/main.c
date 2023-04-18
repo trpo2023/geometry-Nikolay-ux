@@ -3,14 +3,15 @@
 #include <string.h>
 
 #include "libgeometry/counter.h"
-#include "libgeometry/parser.h"
 #include "libgeometry/macr.h"
+#include "libgeometry/parser.h"
 
-int main() {
+int main()
+{
     char* string = (char*)malloc(N * sizeof(char));
     FILE* check;
     check = fopen("shapes.txt", "r");
-    if(check == NULL) {
+    if (check == NULL) {
         printf("Error of opening file!\n");
         return 1;
     }
