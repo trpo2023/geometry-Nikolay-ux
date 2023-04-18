@@ -1,5 +1,8 @@
 #include <stdlib.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
+
+#include "macr.h"
 
 float count_area(char* string)
 {
@@ -32,5 +35,7 @@ float count_perimeter(char* string)
         temp[count++] = string[p];
         temp = (char*)realloc(temp, (count + 1) * sizeof(char));
     }
-    return (2 * pi * atof(temp));
+    float k = 2 * M_PI * atof(temp);
+    free(temp);
+    return k;
 }
