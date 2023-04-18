@@ -14,7 +14,6 @@ int main() {
         printf("Error of opening file!\n");
         return 1;
     }
-
     for (char count = 1; fgets(string, N, check) != NULL; count++) {
         if (is_circle(string, count) == 0) {
             printf("\tarea = %f\n", count_area(string));
