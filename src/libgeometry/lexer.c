@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
+#include "macr.h"
 
 int check_name(char* string)
 {
