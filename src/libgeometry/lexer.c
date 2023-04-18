@@ -16,7 +16,6 @@ int check_name(char* string)
     if (strcmp(temp, "circle") == 0)
         return len + 1;
     else {
-        printf("Error at column 0: expected 'circle'\n");
         return 1;
     }
 }
