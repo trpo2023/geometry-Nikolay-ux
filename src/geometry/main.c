@@ -6,8 +6,7 @@
 #include "libgeometry/parser.h"
 #include "libgeometry/macr.h"
 
-int main()
-{
+int main() {
     char* string = (char*)malloc(N * sizeof(char));
     FILE* check;
     check = fopen("shapes.txt", "r");
