@@ -77,23 +77,41 @@ int check_str_end(char* string)
 
 int is_circle(char* string, char count)
 {
-    printf("\nshape number: %d\n", count);
+    printf("\n%d. ", count);
     printf("%s", string);
     int len;
-    if ((len = check_name(string)) == 1)
+    if ((len = check_name(string)) == 1) {
+        printf("Error: expected 'circle'\n");
         return 1;
+    }
     int d = 0;
     int k = check_args(string, len);
-    if(k == 0) {
-        d = check_str_end(string);
+    switch (k) {
+        case 0:
+            d = check_str_end(string);
+            break;
+        case 2:
+            printf("Error: expected '('\n");
+            return 1;
+        case 3:
+            printf("Error: expected double\n");
+            return 1;
+        case 4:
+            printf("Error: too many|less args\n");
+            return 1;
+        case 5:
+            printf("Error: expected double\n");
+            return 1;
     }
-    else {
-        return k;
+    switch (d) {
+        case 0:
+            return 0;
+        case 6:
+            printf("Error: unexpected token\n");
+            return 1;
+        case 7:
+            printf("Error: expected ')'\n");
+            return 1;
     }
-    if(d == 0) {
-        return 0;
-    }
-    else {
-        return d;
-    }
+    return 0;
 }
