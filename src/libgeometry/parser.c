@@ -1,6 +1,7 @@
-#include "libgeometry/lexer.h"
 #include <stdio.h>
 #include <string.h>
+
+#include "libgeometry/lexer.h"
 
 int check_args(char* string, int len)
 {
