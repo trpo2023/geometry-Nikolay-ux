@@ -3,9 +3,16 @@
 #include <math.h>
 
 #include "macr.h"
+#include "parser.h"
+#include "lexer.h"
 
-float count_area(char* string)
+double count_area(char* string)
 {
+    int len = check_name(string);
+    if(check_args(string, len) != 0)
+    {
+        return -1;
+    }
     int i = 0;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
@@ -16,13 +23,17 @@ float count_area(char* string)
         temp[count++] = string[i];
         temp = (char*)realloc(temp, (count + 1) * sizeof(char));
     }
-    float k = M_PI * atof(temp) * atof(temp);
+    double k = M_PI * atof(temp) * atof(temp);
     free(temp);
     return k;
 }
 
-float count_perimeter(char* string)
+double count_perimeter(char* string)
 {
+    int len = check_name(string);
+    if (check_args(string, len) != 0) {
+        return -1;
+    }
     int i = 0;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
@@ -33,7 +44,7 @@ float count_perimeter(char* string)
         temp[count++] = string[p];
         temp = (char*)realloc(temp, (count + 1) * sizeof(char));
     }
-    float k = 2 * M_PI * atof(temp);
+    double k = 2 * M_PI * atof(temp);
     free(temp);
     return k;
 }

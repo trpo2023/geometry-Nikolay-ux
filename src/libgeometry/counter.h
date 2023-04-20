@@ -1,4 +1,4 @@
 #pragma once
 
-float count_perimeter(char*);
-float count_area(char*);
+double count_perimeter(char*);
+double count_area(char*);
