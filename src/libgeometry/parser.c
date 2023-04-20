@@ -33,11 +33,11 @@ int check_args(char* string, int len)
     }
     for (int i = v; (string[i] != ')') && (i < (int)strlen(string)) - 1; i++) {
         if (((string[i] != ' ') && (string[i] != '.')
-             && (!((string[i] >= '1') && (string[i] <= '9'))))
+             && (!((string[i] >= '0') && (string[i] <= '9'))))
             || (string[i] == ',')) {
             return 5;
         } else if (
-                (string[i] >= '1') && (string[i] <= '9')
+                (string[i] >= '0') && (string[i] <= '9')
                 && (string[i + 1] == ' ')) {
             arg2_count += 1;
             b = i;

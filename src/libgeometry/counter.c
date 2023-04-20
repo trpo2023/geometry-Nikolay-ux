@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -8,11 +9,6 @@
 
 double count_area(char* string)
 {
-    int len = check_name(string);
-    if(check_args(string, len) != 0)
-    {
-        return -1;
-    }
     int i = 0;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
@@ -30,10 +26,6 @@ double count_area(char* string)
 
 double count_perimeter(char* string)
 {
-    int len = check_name(string);
-    if (check_args(string, len) != 0) {
-        return -1;
-    }
     int i = 0;
     char* temp = (char*)malloc(sizeof(char));
     int count = 0;
