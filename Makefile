@@ -49,27 +49,27 @@ test: $(TEST_PATH)
 
 $(TEST_PATH): $(TEST_OBJ_PATH)/main.o $(TEST_OBJ_PATH)/test.o $(LIB_OBJECTS)
 	$(CC) $(CFLAGS) $(CFLAGS_TEST) -o $@ $^ -lm
-
-$(OBJ_DIR)/$(TEST_DIR)/%.o: $(TEST_DIR)/main.c $(TEST_DIR)/test.c $(LIB_OBJECTS)
+	
+$(OBJ)/$(TEST_DIR)/%.o: $(TEST_DIR)/main.c $(TEST_DIR)/test.c $(LIB_OBJECTS)
 	$(CC) $(CFLAGS) $(CFLAGS_TEST) -c -o $@ $< -lm
 
 .PHONY: clean
 clean:
-	rm -f $(APP_PATH) $(TEST_PATH) $(LIB_PATH)
+	rm -f $(APP_PATH) $(TEST_PATH) $(LIB_PATH) 
 	rm -rf $(DEPS) $(APP_OBJECTS) $(LIB_OBJECTS)
 	rm -rf $(TEST_OBJ_PATH)/*.*
-
+	
 .PHONY: run
 run: $(APP_RUN)
 	$(APP_RUN)
-
-.PHONY: run test
-run test: $(TEST_CHECK)
+	
+.PHONY: rtest
+rtest: $(TEST_CHECK)
 	$(TEST_CHECK)
-
+	
 .PHONY: start
 start:
 	make clean
-	make 
+	make
 	make test
-	make run test
+	make rtest
