@@ -1,6 +1,6 @@
+#include <ctest.h>
 #include <stdlib.h>
-#include <string.h>
-#include "ctest.h"
+#include <ctest.h>
 // #include "libgeometry/counter.h"
 
 #include "libgeometry/lexer.h"
