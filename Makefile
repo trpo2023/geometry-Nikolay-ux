@@ -57,7 +57,7 @@ $(OBJ_DIR)/$(TEST_DIR)/%.o: $(TEST_DIR)/main.c $(TEST_DIR)/test.c $(LIB_OBJECTS)
 clean:
 	rm -f $(APP_PATH) $(TEST_PATH) $(LIB_PATH)
 	rm -rf $(DEPS) $(APP_OBJECTS) $(LIB_OBJECTS)
-	rm -rf $(TEST_OBJ_PATH)/*.o
+	rm -rf $(TEST_OBJ_PATH)/*.*
 
 .PHONY: run
 run: $(APP_RUN)
