@@ -1,21 +1,16 @@
-#include <stdio.h>
 #include <string.h>
 
 #include "macr.h"
 
-int check_name(char* string)
+int check_name(char* string, int* len)
 {
-    char temp[N], len = 0;
+    char temp[N];
     for (int i = 0; (string[i] >= 'a') && (string[i] <= 'z'); i++) {
-        if (string[i] != '(') {
-            temp[i] = string[i];
-            len = i;
-        } else
-            break;
+        temp[i] = string[i];
+        *len += 1;
     }
-    if (strcmp(temp, "circle") == 0)
-        return len + 1;
-    else {
+    if (strcmp(temp, "circle") != 0) {
         return 1;
     }
+    return 0;
 }
