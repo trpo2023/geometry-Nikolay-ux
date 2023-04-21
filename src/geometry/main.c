@@ -9,6 +9,8 @@
 int main()
 {
     char* string = (char*)malloc(N * sizeof(char));
+    double ** val = (double**)malloc(sizeof(double*));
+    val[0] = (double*)malloc(COL*sizeof(double)); 
     FILE* check;
     check = fopen("shapes.txt", "r");
     if (check == NULL) {
@@ -19,6 +21,7 @@ int main()
         if (!is_circle(string, count)) {
             printf("\tarea = %f\n", count_area(string));
             printf("\tperimeter = %f\n", count_perimeter(string));
+
         }
     }
     free(string);
