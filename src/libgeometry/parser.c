@@ -68,7 +68,7 @@ int check_brace_2(char* string, int* lenght)
     if (string[*lenght] != ')') {
         return 7;
     }
-    else if (*lenght + 4 < (int)strlen(string)) {
+    else if (*lenght + 2 < (int)strlen(string)) {
         return 8;
     }
     return 0;
