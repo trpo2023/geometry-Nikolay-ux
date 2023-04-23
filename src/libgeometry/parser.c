@@ -1,99 +1,136 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "libgeometry/lexer.h"
+#include "macr.h"
 
-int check_args(char* string, int len)
+int check_brace_1(char* string, int* len)
 {
-    if (string[len] != '(') {
-        printf("Error at column %d: expected '('\n", len);
-        return 1;
-    }
-    char arg_count = 0, arg2_count = 0, d = 0, b = 0;
-    for (int i = len + 1; (i < (int)strlen(string)) && (string[i] != ',');
+    *len += 1;
+    return (string[*len - 1] != '(') ? 2 : 0;
+}
+
+int check_arg_x(char* string, int* lenght)
+{
+    char* temp = (char*)malloc(N * sizeof(char));
+    int j = 0, len = 0, p = *lenght;
+    for (int i = p; ((string[i] >= '0') && (string[i] <= '9'))
+         || (string[i] == '.') || (string[i] == '-');
          i++) {
-        if ((string[i] != ' ') && (string[i] != '.')
-            && (!((string[i] >= '0') && (string[i] <= '9')))) {
-            printf("Error at column %d\n", i);
-            return 1;
-        } else if (
-                (string[i] >= '0') && (string[i] <= '9')
-                && (string[i + 1] == ' ')) {
-            arg_count += 1;
-            d = i;
-        } else if ((string[i] == '.') && (string[i + 1] == ')')) {
-            arg_count += 3;
-            d = i;
-        }
+        temp[j++] = string[i];
+        *lenght += 1;
+        len = i + 1;
     }
-    if ((arg_count != 1)) {
-        printf("Error at column %d: too many|less args\n", d);
-        return 1;
+    if (((len == 0) || (string[len] != ' ')) || ((string[p] != '0') && (atof(temp) == 0))) {
+        free(temp);
+        return 3;
     }
-    int v = 0;
-    for (int i = 0; i < (int)strlen(string); i++) {
-        if (string[i] == ',') {
-            v = i + 1;
-        }
+    *lenght += 1;
+    free(temp);
+    return 0;
+}
+
+int check_arg_y(char* string, int* lenght)
+{
+    char *temp = (char*)malloc(N*sizeof(char));
+    int j = 0, len = 0, p = *lenght;
+    for (int i = p; ((string[i] >= '0') && (string[i] <= '9'))
+         || (string[i] == '.') || (string[i] == '-');
+         i++) {
+        temp[j++] = string[i];
+        *lenght += 1;
+        len = i + 1;
     }
-    for (int i = v; (string[i] != ')') && (i < (int)strlen(string)) - 1; i++) {
-        if (((string[i] != ' ') && (string[i] != '.')
-             && (!((string[i] >= '1') && (string[i] <= '9'))))
-            || (string[i] == ',')) {
-            printf("Error at column %d: \n", i);
-            return 1;
-        } else if (
-                (string[i] >= '1') && (string[i] <= '9')
-                && (string[i + 1] == ' ')) {
-            arg2_count += 1;
-            b = i;
-        } else if ((string[i] == '.') && (string[i + 1] == ' ')) {
-            arg2_count += 2;
-            b = i;
-        }
+    if ((len == 0) || (string[len] != ',')) {
+        free(temp);
+        return 4;
     }
-    if ((arg2_count != 1) && (b != 0)) {
-        printf("Error at column %d: too many|less args\n", b);
-        return 1;
+    if (string[p] != '0' && atof(temp) == 0) {
+        free(temp);
+        return 4;
+    }
+    *lenght += 1;
+    free(temp);
+    return 0;
+}
+
+int check_radius(char* string, int* lenght)
+{
+    int len = 0, p = *lenght + 1;
+    for (int i = p;
+         ((string[i] >= '0') && (string[i] <= '9')) || (string[i] == '.');
+         i++) {
+        *lenght += 1;
+        len = i + 1;
+    }
+    if (len == 0) {
+        return 5;
+    }
+    *lenght += 1;
+    return 0;
+}
+
+int check_brace_2(char* string, int* lenght)
+{
+    if (string[*lenght] != ')') {
+        return 6;
+    } else if (*lenght + 2 < (int)strlen(string)) {
+        return 7;
     }
     return 0;
 }
 
-int check_str_end(char* string)
+int is_circle(char* string)
 {
-    int endst = 0, end = 0;
-    if (string[(int)strlen(string) - 1] == '\n')
-        endst = (int)strlen(string) - 2;
-    else
-        endst = (int)strlen(string) - 1;
-    for (int i = 0; i < (int)strlen(string); i++) {
-        if ((string[i] == ')') && (string[i + 1] != '\n')) {
-            printf("Error at column %d: unexpected token\n", i + 1);
-            return 1;
-        } else if (
-                (string[i] == ')')
-                && ((string[i + 1] == '\n') || (string[i + 1] == ' '))) {
-            end = i;
-            break;
-        }
-    }
-    if (endst != end) {
-        printf("Error at column %d: expected ')'\n", endst);
+    int len = 0;
+    if (check_name(string, &len) == 1) {
         return 1;
+    }
+    if (check_brace_1(string, &len) == 2) {
+        return 2;
+    }
+    if (check_arg_x(string, &len) == 3) {
+        return 3;
+    }
+    if (check_arg_y(string, &len) == 4) {
+        return 4;
+    }
+    if (check_radius(string, &len) == 5) {
+        return 5;
+    }
+    if (check_brace_2(string, &len) == 6) {
+        return 6;
+    } else if (check_brace_2(string, &len) == 7) {
+        return 7;
     }
     return 0;
 }
 
-int is_circle(char* string, char count)
+void error_msg(char* string, int k, int fail)
 {
-    printf("\nshape number: %d\n", count);
-    printf("%s", string);
-    int len;
-    if ((len = check_name(string)) == 1)
-        return 1;
-    else if (check_args(string, len))
-        return 1;
-    else if (check_str_end(string))
-        return 1;
-    return 0;
+    printf("\n%d. %s", fail, string);
+    switch (k) {
+    case 1:
+        printf("Error: expected 'circle'\n");
+        break;
+    case 2:
+        printf("Error: expected '('\n");
+        break;
+    case 3:
+        printf("Error at x coordinate: expected double\n");
+        break;
+    case 4:
+        printf("Error at y coordinate: expected double\n");
+        break;
+    case 5:
+        printf("Error at radius: expected double\n");
+        break;
+    case 6:
+        printf("Error: expected ')'\n");
+        break;
+    case 7:
+        printf("Error: unexpected token\n");
+        break;
+    }
 }
