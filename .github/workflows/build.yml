@@ -16,4 +16,4 @@ jobs:
         run: make
 
       - name: tests
-        run: make | make test
+        run: make start
