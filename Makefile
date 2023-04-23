@@ -44,7 +44,7 @@ $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $(CFLAGS_TEST) $< -o $@ -lm
+	$(CC) -c $(CFLAGS) $(CFLAGS_TEST) $< -o $@
 
 .PHONY: test
 test: $(TEST_PATH)
