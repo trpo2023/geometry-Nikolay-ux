@@ -8,22 +8,33 @@
 
 int main()
 {
-    char* string = (char*)malloc(N * sizeof(char));
-    double ** val = (double**)malloc(sizeof(double*));
-    val[0] = (double*)malloc(COL*sizeof(double)); 
+    system("clear");
     FILE* check;
     check = fopen("shapes.txt", "r");
     if (check == NULL) {
         printf("Error of opening file!\n");
         return 1;
     }
-    for (char count = 1; fgets(string, N, check) != NULL; count++) {
-        if (!is_circle(string, count)) {
-            printf("\tarea = %f\n", count_area(string));
-            printf("\tperimeter = %f\n", count_perimeter(string));
-
+    char* string = (char*)malloc(N * sizeof(char));
+    char** strings = (char**)malloc(sizeof(char*));
+    int row = 1, count = 1, fail = 1;
+    printf("\nFailed:");
+    for (; fgets(string, N, check) != NULL; count++) {
+        int k = is_circle(string);
+        if (!k) {
+            strings = (char**)realloc(strings, row * sizeof(char*));
+            strings[row - 1] = (char*)malloc(strlen(string) * sizeof(char));
+            strcpy(strings[row - 1], string);
+            row++;
+        } else {
+            error_msg(string, k, fail++);
         }
     }
+    intersections(strings, row - 1);
+    for (int i = 0; i < row - 1; i++) {
+        free(strings[i]);
+    }
+    free(strings);
     free(string);
     return 0;
 }
