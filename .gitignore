@@ -3,5 +3,4 @@
 *.d
 *.a
 *.vscode
-geometry
-test
+bin/

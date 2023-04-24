@@ -22,7 +22,8 @@ int check_arg_x(char* string, int* lenght)
         *lenght += 1;
         len = i + 1;
     }
-    if (((len == 0) || (string[len] != ' ')) || ((string[p] != '0') && (atof(temp) == 0))) {
+    if (((len == 0) || (string[len] != ' '))
+        || ((string[p] != '0') && (atof(temp) == 0))) {
         free(temp);
         return 3;
     }
@@ -33,7 +34,7 @@ int check_arg_x(char* string, int* lenght)
 
 int check_arg_y(char* string, int* lenght)
 {
-    char *temp = (char*)malloc(N*sizeof(char));
+    char* temp = (char*)malloc(N * sizeof(char));
     int j = 0, len = 0, p = *lenght;
     for (int i = p; ((string[i] >= '0') && (string[i] <= '9'))
          || (string[i] == '.') || (string[i] == '-');
