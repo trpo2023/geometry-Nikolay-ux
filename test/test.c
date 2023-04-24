@@ -1,4 +1,4 @@
-#include "ctest.h"
+#include "thirdparty/ctest.h"
 #include <stdlib.h>
 #include <string.h>
 #define _USE_MATH_DEFINES
