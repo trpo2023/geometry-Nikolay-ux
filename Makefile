@@ -30,7 +30,7 @@ APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
 LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 
-DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
+DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d) 
 
 .PHONY: all
 all: $(APP_PATH)
@@ -49,7 +49,7 @@ $(OBJ_DIR)/%.o: %.c
 .PHONY: test
 test: $(TEST_PATH)
 
-$(TEST_PATH): $(TEST_OBJ_PATH)/main.o $(TEST_OBJ_PATH)/test.o $(LIB_OBJECTS)
+$(TEST_PATH): $(TEST_OBJ_PATH)/main.o $(TEST_OBJ_PATH)/test.o $(LIB_PATH)
 	$(CC) $(CFLAGS) $(CFLAGS_TEST) -o $@ $^ -lm
 	
 $(OBJ)/$(TEST_DIR)/%.o: $(TEST_DIR)/main.c $(TEST_DIR)/test.c $(LIB_OBJECTS)
